@@ -5,15 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "echo serving from http://localhost:8800/ && httpster -p 8800 -d hosted-pages/"
+    "start": "echo serving from http://localhost:8800/ && httpster -p 8800 -d pages/"
   },
-  "repository": "git+https://github.com/raisedadead/auth0-templates.git",
+  "repository": "git+https://github.com/freeCodeCamp/auth0-templates.git",
   "author": "Mrugesh Mohapatra (https://freecodecamp.org/)",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/raisedadead/auth0-templates/issues"
+    "url": "https://github.com/freeCodeCamp/auth0-templates/issues"
   },
-  "homepage": "https://github.com/raisedadead/auth0-templates#readme",
+  "homepage": "https://github.com/freeCodeCamp/auth0-templates#readme",
   "private": true,
   "dependencies": {
     "httpster": "^1.0.3"
