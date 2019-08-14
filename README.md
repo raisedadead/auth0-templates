@@ -5,8 +5,8 @@
 ## Contributing
 
 ```
-yarn install
-yarn start
+npm install
+npm start
 ```
 
 Visit <http://localhost:8800> to see the pages
