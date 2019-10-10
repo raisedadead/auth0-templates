@@ -16,10 +16,10 @@
   <link href="https://s3.amazonaws.com/freecodecamp/favicons/apple-touch-icon-180x180.png" rel="apple-touch-icon"
     sizes="180x180">
   <!-- Latest compiled and minified CSS -->
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Mono:400" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-zrnmn8R8KkWl12rAZFt4yKjxplaDaT7/EUkKm7AovijfrQItFWR7O/JJn4DAa/gx" crossorigin="anonymous">
+
+
 <style>
 :root {
   --dark-blue: #002ead;
@@ -32,6 +32,7 @@
   --gray-10: #dfdfe2;
   --gray-05: #eeeef0;
   --gray-00: #fff;
+  --error: #a94442;
   --header-height: 38px;
 }
 
@@ -119,7 +120,7 @@ header {
   margin-right: -15px;
 }
 
-h1, h3, p, .enter-email {
+h1, h3, p {
   color: var(--gray-85);
   text-align: center;
 }
@@ -164,17 +165,23 @@ a:focus {
   margin: 1.2rem 0 1.2rem;
 }
 
-label {
+.social-signin-methods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.control-label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
   font-size: 18px;
+  text-align: left;
 }
 
 .form-control {
   font-family: 'Roboto Mono', monospace;
-  margin-bottom: 1.2rem;
   color: var(--gray-85);
   background-color: var(--gray-00);
   outline: none;
@@ -187,6 +194,26 @@ label {
   padding: 6px 12px;
   font-size: 18px;
   line-height: 1.42857143;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.button-holder {
+  text-align: center;
+}
+
+.help-block {
+  margin-top: 5px;
+}
+
+.has-error {
+  color: var(--error);
+}
+
+.has-error > .form-control {
+  border: 1px solid var(--error);
 }
 
 .btn {
@@ -205,7 +232,7 @@ label {
 }
 
 .btn:not(:last-child) {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .btn:hover,
@@ -273,17 +300,24 @@ fieldset[disabled] .btn-primary.focus {
   h3 {
     font-size: 1.1rem;
   }
+
+  .btn {
+    max-width: 400px;
+  }
 }
 
 @media (min-width: 768px) {
   .container {
     width: 750px;
-    /* width: 52.42%; */
   }
   
   .page-content {
     margin-left: 16.66666667%;
-    width: 66.66666667%;
+    width: 65.79%;
+  }
+
+  .btn {
+    max-width: 600px;
   }
 }
 
@@ -328,7 +362,7 @@ fieldset[disabled] .btn-primary.focus {
           </p>
           <div class="social-signin-methods">
             <!-- DISABLED ON THE DEV TENANT -->
-            <!-- <button id="login-google" class="btn btn-primary">
+            <button id="login-google" class="btn btn-primary">
               <span><i class="fab fa-google"></i></span> Continue with Google
             </button>
             <button id="login-github" class="btn btn-primary">
@@ -336,7 +370,7 @@ fieldset[disabled] .btn-primary.focus {
             </button>
             <button id="login-facebook" class="btn btn-primary">
               <span><i class="fab fa-facebook"></i></span> Continue with Facebook
-            </button> -->
+            </button>
             <!-- END DISABLED ON THE DEV TENANT -->
             <button id="login-email" class="btn btn-primary">
               <span><i class="fas fa-envelope"></i></span> Continue with Email
@@ -345,25 +379,32 @@ fieldset[disabled] .btn-primary.focus {
           <div class="passwordless-email" style="display: none;">
             <div class="enter-email">
               <form novalidate>
-                <label for="email" class="control-label">
-                  Enter your email address to continue:
-                </label>
-                <input autofocus="" class="form-control" id="email" name="email"
-                  oninput="setCustomValidity('')" value autocomplete="off"
-                  placeholder="" required="" type="email">
-                <div class="button-spacer"></div>
-                <button class="btn btn-primary" id="send-email-btn"><span><i
-                      class="fas fa-paper-plane"></i></span> Email me a short code to continue</button>
+                <div class="form-group">
+                  <label for="email" class="control-label">
+                    Enter your email address to continue:
+                  </label>
+                  <input autofocus="" class="form-control" id="email" name="email"
+                    oninput="setCustomValidity('')" value autocomplete="off"
+                    placeholder="" required="" type="email">
+                </div>
+                <div class="button-holder">
+                  <button class="btn btn-primary" id="send-email-btn"><span><i
+                    class="fas fa-paper-plane"></i></span> Email me a short code to continue</button>
+                </div>
               </form>
             </div>
             <div class="enter-code" style="display: none;">
-              <label for="code">
-                Enter the short code you received on your email:
-              </label>
               <form>
-                <input autofocus="" class="form-control" id="code" name="code" placeholder="" value="">
-                <button class="btn btn-primary" id="send-code-btn"><span><i
-                  class="fas fa-sign-in-alt"></i></span> Submit code and continue to freeCodeCamp.org</button>
+                <div class="form-group">
+                  <label for="code" class="control-label">
+                    Enter the short code you received on your email:
+                  </label>
+                  <input autofocus="" class="form-control" id="code" name="code" placeholder="" value="" autocomplete="off">
+                </div>
+                <div class="button-holder">
+                  <button class="btn btn-primary" id="send-code-btn"><span><i
+                    class="fas fa-sign-in-alt"></i></span> Submit code and continue to freeCodeCamp.org</button>
+                </div>
               </form>
             </div>
           </div> <!-- End passwordless-email -->
@@ -390,157 +431,141 @@ fieldset[disabled] .btn-primary.focus {
   <![endif]-->
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/4.1.5/cash.min.js" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
-    integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
-    crossorigin="anonymous"></script>
-
-  <script defer src="https://cdn.auth0.com/js/auth0/9.2/auth0.min.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0/9.11.3/auth0.min.js"></script>
   <script defer src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
 
   <script>
-    $(document).ready(function () {
+    var config, params, webAuth = null;
 
-      var config, params, webAuth = null;
+    $('form').on('submit', function (event) {
+      event.preventDefault();
+    });
 
-      $('form').on('submit', function (event) {
-        event.preventDefault();
-      });
+    function setupAuth0FromConfig() {
+      config = JSON.parse(
+        decodeURIComponent(escape(window.atob('@@config@@')))
+      );
 
-      function setupAuth0FromConfig() {
-        config = JSON.parse(
-          decodeURIComponent(escape(window.atob('@@config@@')))
-        );
+      params = Object.assign({
+        domain: config.auth0Domain,
+        clientID: config.clientID,
+        redirectUri: config.callbackURL,
+        scope: 'openid email',
+        audience: 'https://' + config.auth0Domain + '/userinfo',
+        responseType: 'code'
+      }, config.internalOptions);
 
-        params = Object.assign({
-          domain: config.auth0Domain,
-          clientID: config.clientID,
-          redirectUri: config.callbackURL,
-          scope: 'openid email',
-          audience: 'https://' + config.auth0Domain + '/userinfo',
-          responseType: 'code'
-        }, config.internalOptions);
+      webAuth = new auth0.WebAuth(params);
+    }
 
-        webAuth = new auth0.WebAuth(params);
-      }
+    function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(email);
+    }
 
-      function isEmail(email) {
-        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        return regex.test(email);
-      }
+    function passwordlessSendEmail() {
 
-      function passwordlessSendEmail() {
-
-        var email = $('input#email').val();
-        if (isEmail(email)) {
-          webAuth.passwordlessStart({
-            connection: 'email',
-            send: 'code',
-            email: email
-          }, function (err, res) {
-
-            if (err) {
-
-              $('#flash-content').html(
-                'Oops...something is not right. Please go back to freeCodeCamp.org and try again.'
-              );
-
-              $('#flash-board')
-                .removeClass('alert-success')
-                .removeClass('alert-danger')
-                .addClass('alert-info')
-                .fadeIn();
-
-              console.log('err', err);
-            }
-
-            console.log('res', res);
-
-            // Hide the input and show the code entry screen
-            $('.enter-email').hide();
-            $('.enter-code').show();
-            $('#code').focus();
-
-          });
-
-        } else {
-
-          $('#flash-content').html(
-            'The email you have entered is not valid. Please check and try again.'
-          );
-
-          $('#flash-board')
-            .removeClass('alert-success')
-            .removeClass('alert-danger')
-            .addClass('alert-info')
-            .fadeIn();
-
-        }
-
-      }
-
-      function passwordlessLogin() {
-
-        var email = $('input#email').val();
-        var code = $('input#code').val();
-        webAuth.passwordlessLogin({
+      var email = $('#email').val();
+      if (isEmail(email)) {
+        webAuth.passwordlessStart({
           connection: 'email',
-          email: email,
-          verificationCode: code
+          send: 'code',
+          email: email
         }, function (err, res) {
-
           if (err) {
 
-            console.log('error logging-in', err);
+            var generalErrorMessage = 'Oops...something is not right. Please go back to freeCodeCamp.org and try again.';
+            displayErrorMessage(generalErrorMessage);
 
-            $('#flash-content').html(
-              'The code you entered is not valid. Please check the latest OTP that you have received.'
-            );
-
-            $('#flash-board')
-              .removeClass('alert-success')
-              .addClass('alert-info')
-              .fadeIn();
-
+            console.log('err', err);
           }
+
+          console.log('res', res);
+
+          // Hide email input and any error messages, then show the code entry screen
+          $('.enter-email').hide();
+          removeErrorMessage();
+          $('.enter-code').show();
+
         });
-      };
 
+      } else {
+        // Invalid email entered
+        var emailErrorMessage = 'The email you entered is not valid. Please check and try again.';
+        displayErrorMessage(emailErrorMessage);
+      }
+    }
 
-      $('#send-email-btn').on('click', function () {
-        passwordlessSendEmail();
+    function passwordlessLogin() {
+
+      var email = $('#email').val();
+      var code = $('#code').val();
+      webAuth.passwordlessLogin({
+        connection: 'email',
+        email: email,
+        verificationCode: code
+      }, function (err, res) {
+
+        if (err) {
+
+          console.log('error logging-in', err);
+
+          var OTPErrorMessage = 'The code you entered is not valid. Please check the last OTP you received and try again.';
+          displayErrorMessage(OTPErrorMessage);
+        } else {
+          // Remove error when correct OTP code entered
+          removeErrorMessage();
+        }
       });
+    };
 
-      $('#send-code-btn').on('click', function () {
-        passwordlessLogin();
+    function displayErrorMessage(errMsg) {
+      $('.form-group').addClass('has-error');
+      if ($('.form-group .help-block').length === 0) {
+        $('.form-group').append(
+          '<div class="help-block">' + errMsg + '</div>'
+        );
+      }
+    }
+
+    function removeErrorMessage() {
+      $('.form-group').removeClass('has-error');
+      $('.help-block').remove();
+    }
+
+    $('#login-email').on('click', function () {
+      $('.social-signin-methods').hide();
+      $('.passwordless-email').show();
+      setupAuth0FromConfig();
+    });
+
+    $('#send-email-btn').on('click', function () {
+      passwordlessSendEmail();
+    });
+
+    $('#send-code-btn').on('click', function () {
+      passwordlessLogin();
+    });
+
+    $('#login-google').on('click', function () {
+      setupAuth0FromConfig();
+      webAuth.authorize({
+        connection: 'google-oauth2'
       });
+    });
 
-      $('#login-email').on('click', function () {
-        $('.social-signin-methods').hide();
-        $('.passwordless-email').show();
-        setupAuth0FromConfig();
+    $('#login-github').on('click', function () {
+      setupAuth0FromConfig();
+      webAuth.authorize({
+        connection: 'github'
       });
+    });
 
-      $('#login-facebook').on('click', function () {
-        setupAuth0FromConfig();
-        webAuth.authorize({
-          connection: 'facebook'
-        });
+    $('#login-facebook').on('click', function () {
+      setupAuth0FromConfig();
+      webAuth.authorize({
+        connection: 'facebook'
       });
-
-      $('#login-google').on('click', function () {
-        setupAuth0FromConfig();
-        webAuth.authorize({
-          connection: 'google-oauth2'
-        });
-      });
-
-      $('#login-github').on('click', function () {
-        setupAuth0FromConfig();
-        webAuth.authorize({
-          connection: 'github'
-        });
-      });
-
     });
   </script>
   <script>
