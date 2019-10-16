@@ -451,19 +451,47 @@
       event.preventDefault();
     });
 
+    window.onload = async function() {
+      setupAuth0FromConfig();
+      const existingSession = await checkSession();
+      if (existingSession) window.location.href('https://freecodecamp.org/learn');
+    };
+
+    function checkSession() {
+      return webAuth.checkSession({}, function(err, authResult) {
+        if (err) { 
+          console.log(err);
+        } else {
+          return authResult;
+        }
+      });
+    }
+
     function setupAuth0FromConfig() {
-      config = JSON.parse(
-        decodeURIComponent(escape(window.atob('@@config@@')))
-      );
+      // uncomment for production
+      // config = JSON.parse(
+      //   decodeURIComponent(escape(window.atob('@@config@@')))
+      // );
 
       params = Object.assign({
-        domain: config.auth0Domain,
-        clientID: config.clientID,
-        redirectUri: config.callbackURL,
+      // uncomment for production
+      //   domain: config.auth0Domain,
+      //   clientID: config.clientID,
+      //   redirectUri: config.callbackURL,
+      //   scope: 'openid email',
+      //   audience: 'https://' + config.auth0Domain + '/userinfo',
+      //   // responseType: 'code'
+      //   responseType: 'token id_token'
+      // }, config.internalOptions);
+
+        // for local dev (delete when finished testing)
+        domain: 'freecodecamp-dev.auth0.com',
+        clientID: 'HTNA7gQMVCBD6k2WpIwVGmJ514r2JQQj',
+        redirectUri: 'http://127.0.0.1:5500/auth/auth0/callback',
         scope: 'openid email',
-        audience: 'https://' + config.auth0Domain + '/userinfo',
-        responseType: 'code'
-      }, config.internalOptions);
+        audience: 'https://freecodecamp-dev.auth0.com/userinfo',
+        responseType: 'token id_token'
+      }, '');
 
       webAuth = new auth0.WebAuth(params);
     }
@@ -546,7 +574,6 @@
     $('#login-email').on('click', function () {
       $('.social-signin-methods').hide();
       $('.passwordless-email').show();
-      setupAuth0FromConfig();
     });
 
     $('#send-email-btn').on('click', function () {
@@ -558,21 +585,18 @@
     });
 
     $('#login-google').on('click', function () {
-      setupAuth0FromConfig();
       webAuth.authorize({
         connection: 'google-oauth2'
       });
     });
 
     $('#login-github').on('click', function () {
-      setupAuth0FromConfig();
       webAuth.authorize({
         connection: 'github'
       });
     });
 
     $('#login-facebook').on('click', function () {
-      setupAuth0FromConfig();
       webAuth.authorize({
         connection: 'facebook'
       });
