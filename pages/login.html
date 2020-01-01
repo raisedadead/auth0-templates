@@ -83,6 +83,7 @@
       display: -ms-flexbox;
       height: var(--header-height);
       justify-content: center;
+      align-items: center;
       font-size: 18px;
       background: var(--theme-color);
       position: fixed;
@@ -92,9 +93,8 @@
 
     .universal-nav-logo {
       display: block;
-      width: auto;
-      height: 25px;
-      margin-top: 7px;
+      width: 210px;
+      height: 24px;
     }
 
     .default-layout {
@@ -150,8 +150,12 @@
       text-decoration: underline;
     }
 
-    a:hover,
-    a:focus {
+    a, button {
+      cursor: pointer;
+    }
+
+    main a:hover,
+    main a:focus {
       text-decoration: none;
       color: var(--gray-80);
       background-color: var(--gray-10);
@@ -343,8 +347,10 @@
 <body>
   <header>
     <nav class="site-nav universal-nav">
-      <img alt="freeCodeCamp.org logo" class="universal-nav-logo"
-        src="https://s3.amazonaws.com/freecodecamp/freecodecamp_logo.svg">
+      <a href="https://www.freecodecamp.org/">
+        <img alt="freeCodeCamp.org logo" class="universal-nav-logo"
+        src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg">
+      </a>
     </nav>
   </header>
   <div class="default-layout">
@@ -404,7 +410,7 @@
             </div>
           </div> <!-- End passwordless-email -->
           <p>
-            By continuing you indicate that you have read and agree to freeCodeCamp.org's <a
+            By continuing, you indicate that you have read and agree to freeCodeCamp.org's <a
               href="https://www.freecodecamp.org/terms" target="_blank" rel="noopener noreferrer">Terms of
               Service</a> and <a href="https://www.freecodecamp.org/privacy" target="_blank"
               rel="noopener noreferrer">Privacy Policy</a>.
