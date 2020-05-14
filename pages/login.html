@@ -150,7 +150,8 @@
       text-decoration: underline;
     }
 
-    a, button {
+    a,
+    button {
       cursor: pointer;
     }
 
@@ -349,7 +350,7 @@
     <nav class="site-nav universal-nav">
       <a href="https://www.freecodecamp.org/">
         <img alt="freeCodeCamp.org logo" class="universal-nav-logo"
-        src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg">
+          src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg">
       </a>
     </nav>
   </header>
@@ -358,11 +359,15 @@
       <div class="container">
         <div class="page-content">
           <h1 class="big-heading">
-            freeCodeCamp.org - Development Application
+            freeCodeCamp.org - DEVELOPMENT
           </h1>
           <h3>
-            You are signing into a development instance.
+            This is a test instance for our contributors and staff.
           </h3>
+          <p>
+            If you did not mean to be here, <a href="https://www.freecodecamp.org"> follow this link to go the
+              main website</a>.
+          </p>
           <p>
             This staging/beta instance is used by our contributors and staff to test features before shipping them
             to the main production platform. Your progress may not persist the next time you visit this
@@ -370,21 +375,35 @@
             <a href="https://www.freecodecamp.org/forum/c/contributors" target="blank" rel="noopener noreferrer">
               by giving us feedback on our forum.</a>
           </p>
+          <!--
+          <br/>
+          <br/>
+          <br/>
+          <h3> New user sign ups to this test instance are not available at the minute. </h3>
+          <h3> Thanks for your patience. </h3>
+          <br/>
+          <br/>
+          <br/>
+          -->
           <div class="social-signin-methods">
-            <!-- DISABLED ON THE DEV TENANT -->
-            <!-- <button id="login-google" class="btn btn-primary">
+
+            <button id="login-google" class="btn btn-primary">
               Continue with Google
             </button>
+
             <button id="login-github" class="btn btn-primary">
               Continue with GitHub
             </button>
+
             <button id="login-facebook" class="btn btn-primary">
               Continue with Facebook
-            </button> -->
-            <!-- END DISABLED ON THE DEV TENANT -->
+            </button>
+
             <button id="login-email" class="btn btn-primary">
               Continue with Email
             </button>
+
+
           </div>
           <div class="passwordless-email" style="display: none;">
             <div class="enter-email">
@@ -418,10 +437,7 @@
               </form>
             </div>
           </div> <!-- End passwordless-email -->
-          <p>
-            If you did not mean to be here, <a href="https://www.freecodecamp.org"> follow this link to go the
-              main website</a>.
-          </p>
+          <br />
           <p>
             By continuing, you indicate that you have read and agree to freeCodeCamp.org's <a
               href="https://www.freecodecamp.org/terms" target="_blank" rel="noopener noreferrer">Terms of
