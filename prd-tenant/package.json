@@ -1,0 +1,21 @@
+{
+  "name": "auth0-templates",
+  "version": "0.1.0",
+  "description": "> Templates used on auth0.com for <https://freeCodeCamp.org>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo serving from http://localhost:8800/ && httpster -p 8800 -d pages/"
+  },
+  "repository": "git+https://github.com/freeCodeCamp/auth0-templates.git",
+  "author": "Mrugesh Mohapatra (https://freecodecamp.org/)",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/freeCodeCamp/auth0-templates/issues"
+  },
+  "homepage": "https://github.com/freeCodeCamp/auth0-templates#readme",
+  "private": true,
+  "dependencies": {
+    "httpster": "^1.0.3"
+  }
+}
