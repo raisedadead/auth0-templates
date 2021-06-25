@@ -4,20 +4,14 @@
 
 ## Contributing
 
-1. Browse & navigate to the tenant
 
-```console
-cd <tenant>
-```
+1. Start a local web-server
 
-2. Install dependencies
+   ```console
+    npx serve
+   ```
 
-```console
-npm ci
-npm start
-```
-
-3. Visit <http://localhost:8800> to see the pages
+2. Visit [`http://localhost:5000`](http://localhost:5000) to see the pages, for example the dev-tenant login page is available at: [`http://localhost:5000/dev-tenant/pages/login`](http://localhost:5000/dev-tenant/pages/login)
 
 License
 -------
