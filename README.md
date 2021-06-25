@@ -4,17 +4,25 @@
 
 ## Contributing
 
+1. Browse & navigate to the tenant
+
+```console
+cd <tenant>
 ```
-npm install
+
+2. Install dependencies
+
+```console
+npm ci
 npm start
 ```
 
-Visit <http://localhost:8800> to see the pages
+3. Visit <http://localhost:8800> to see the pages
 
 License
 -------
 
-Copyright (c) 2018 freeCodeCamp.
+Copyright (c) 2021 freeCodeCamp.
 
 The content of this repository bound by the following LICENSE(S)
 - The computer software is licensed under the [BSD-3-Clause](./LICENSE.md).
