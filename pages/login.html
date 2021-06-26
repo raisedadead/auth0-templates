@@ -182,6 +182,24 @@
       font-size: 1.6rem;
     }
 
+    .text {
+      text-align: left;
+    }
+
+    .separator {
+      text-align: center;
+      border-bottom: 3px solid var(--gray-75);
+      line-height: 0.1em;
+      margin: 1.2rem 0 0;
+      width: 60%;
+    }
+
+    .separator span {
+      background: #fff;
+      color: var(--gray-75);
+      padding: 0 10px;
+    }
+
     .social-signin-methods,
     .passwordless-email {
       margin: 1.2rem 0 1.2rem;
@@ -204,22 +222,19 @@
 
     .form-control {
       font-family: 'Roboto Mono', monospace;
-      color: var(--gray-85);
-      background-color: var(--gray-00);
-      outline: none;
-      border: 1px solid #ccc;
-      -webkit-box-shadow: none !important;
-      box-shadow: none !important;
-      border-radius: 0px;
+      min-height: 56px;
       width: 100%;
-      height: 39px;
-      padding: 6px 12px;
-      font-size: 18px;
-      line-height: 1.42857143;
+      padding: 10px 16px;
+      font-size: 22px;
+      color: var(--gray-85);
+      border-radius: 0px;
+      text-decoration: none;
+      outline: none;
     }
 
     .form-group {
       margin-bottom: 15px;
+      text-align: center;
     }
 
     .button-holder {
@@ -228,6 +243,7 @@
 
     .help-block {
       margin-top: 5px;
+      text-align: center;
     }
 
     .has-error {
@@ -325,7 +341,8 @@
         font-size: 1.1rem;
       }
 
-      .btn {
+      .btn,
+      .form-control {
         max-width: 400px;
       }
     }
@@ -340,13 +357,16 @@
         width: 65.79%;
       }
 
-      .btn {
+      .btn,
+      .form-control {
         max-width: 600px;
       }
     }
 
     @media (min-width: 992px) {
-      .container {
+
+      .container,
+      .form-control {
         width: 970px;
       }
     }
@@ -372,33 +392,25 @@
     <main>
       <div class="container">
         <div class="page-content">
+
+
+
+          <!-- This block is used in staging only. Comment out before depoloying -->
+          <!--
           <h1 class="big-heading">
-            freeCodeCamp.org - DEVELOPMENT
+            Your are signin in to a test website.
           </h1>
-          <h3>
-            This is a test instance for our contributors and staff.
-          </h3>
-          <p>
-            If you did not mean to be here, <a href="https://www.freecodecamp.org"> follow this link to go the
-              main website</a>.
-          </p>
-          <p>
-            This staging/beta instance is used by our contributors and staff to test features before shipping them
-            to the main production platform. Your progress may not persist the next time you visit this
-            application. We welcome you to try out the features before everyone else and help us
+          <p class="text">
+            Our contributors and staff use this staging instance to test features before shipping them to the main
+            production platform. We welcome you to try out the features before everyone else and help us
             <a href="https://www.freecodecamp.org/forum/c/contributors" target="blank" rel="noopener noreferrer">
               by giving us feedback on our forum.</a>
           </p>
-          <!--
-          <br/>
-          <br/>
-          <br/>
-          <h3> New user sign ups to this test instance are not available at the minute. </h3>
-          <h3> Thanks for your patience. </h3>
-          <br/>
-          <br/>
-          <br/>
           -->
+          <!-- This block is used in staging only. Comment out before depoloying -->
+
+
+
           <div class="social-signin-methods">
             <button id="login-google" class="btn btn-primary">
               Continue with Google
@@ -406,51 +418,56 @@
             <button id="login-github" class="btn btn-primary">
               Continue with GitHub
             </button>
-            <button id="login-facebook" class="btn btn-primary">
-              Continue with Facebook
-            </button>
-            <button id="login-email" class="btn btn-primary">
-              Continue with Email
-            </button>
+            <h3 class="separator"><span>or</span></button>
           </div>
-          <div class="passwordless-email" style="display: none;">
-            <div class="enter-email">
+          <div class="passwordless-email">
+            <div class=" enter-email">
               <form novalidate>
                 <div class="form-group">
-                  <label for="email" class="control-label">
-                    Enter your email address to continue:
-                  </label>
                   <input autofocus="" class="form-control" id="email" name="email" oninput="setCustomValidity('')" value
-                    autocomplete="off" placeholder="" required="" type="email">
+                    autocomplete="off" placeholder="email" required="" type="email">
                 </div>
                 <div class="button-holder">
                   <button class="btn btn-primary" id="send-email-btn">
-                    Email me a short code to continue</button>
+                    Email me a sign in code</button>
                 </div>
               </form>
             </div>
             <div class="enter-code" style="display: none;">
               <form>
                 <div class="form-group">
-                  <label for="code" class="control-label">
-                    Enter the short code you received on your email:
-                  </label>
-                  <input autofocus="" class="form-control" id="code" name="code" placeholder="" value=""
+                  <input autofocus="" class="form-control" id="code" name="code" placeholder="sign in code" value=""
                     autocomplete="off">
                 </div>
                 <div class="button-holder">
                   <button class="btn btn-primary" id="send-code-btn">
-                    Submit code and continue to freeCodeCamp.org</button>
+                    Submit the sign in code and sign in to freeCodeCamp</button>
                 </div>
               </form>
             </div>
           </div> <!-- End passwordless-email -->
-          <p>
-            By continuing, you indicate that you have read and agree to freeCodeCamp.org's <a
-              href="https://www.freecodecamp.org/terms" target="_blank" rel="noopener noreferrer">Terms of
-              Service</a> and <a href="https://www.freecodecamp.org/privacy" target="_blank"
-              rel="noopener noreferrer">Privacy Policy</a>.
+
+
+
+          <!-- This block is used in staging only. Comment out before depoloying -->
+          <!--
+          <h3 class="text">
+            Your progress may not persist the next time you visit this
+            application. Follow this link to <a href="https://www.freecodecamp.org"> go the main website</a> instead.
+          </h3>
+          -->
+          <!-- This block is used in staging only. Comment out before depoloying -->
+
+
+
+          <p class="text">
+            freeCodeCamp is free and your account is private by default. We use your email address to store your
+            curriculum progress. By continuing, you indicate that you have read and agree to freeCodeCamp.org's
+            <a href="https://www.freecodecamp.org/terms" target="_blank" rel="noopener noreferrer">Terms of Service </a>
+            and <a href="https://www.freecodecamp.org/privacy" target="_blank" rel="noopener noreferrer">Privacy
+              Policy</a>.
           </p>
+
         </div> <!-- End page-content -->
       </div> <!-- End container -->
     </main>
@@ -544,7 +561,7 @@
     }
 
     function isEmail(email) {
-      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z]{2,})+$/;
       return regex.test(email);
     }
 
@@ -618,13 +635,8 @@
       $('.help-block').remove();
     }
 
-    $('#login-email').on('click', function () {
-      $('.social-signin-methods').hide();
-      $('.passwordless-email').show();
-      setupAuth0FromConfig();
-    });
-
     $('#send-email-btn').on('click', function () {
+      setupAuth0FromConfig();
       passwordlessSendEmail();
     });
 
@@ -643,13 +655,6 @@
       setupAuth0FromConfig();
       webAuth.authorize({
         connection: 'github'
-      });
-    });
-
-    $('#login-facebook').on('click', function () {
-      setupAuth0FromConfig();
-      webAuth.authorize({
-        connection: 'facebook'
       });
     });
   </script>
